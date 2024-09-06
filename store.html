@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Watch Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Online Watch Store</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#watches">Watches</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#cart" id="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Find Your Perfect Timepiece</h2>
+            <p>Explore our exclusive collection of watches designed to fit every style and occasion.</p>
+            <a href="#watches" class="btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <section id="watches">
+        <div class="container">
+            <h2>Our Collection</h2>
+            <div class="filters">
+                <input type="text" id="search-bar" placeholder="Search watches...">
+                <select id="category-filter">
+                    <option value="">All Categories</option>
+                    <option value="men">Men's Watches</option>
+                    <option value="women">Women's Watches</option>
+                    <option value="luxury">Luxury Watches</option>
+                </select>
+            </div>
+            <div class="watch-grid">
+                <div class="watch" data-category="men" data-name="Classic Men's Watch" data-price="149.99">
+                    <img src="watch1.jpg" alt="Classic Men's Watch">
+                    <h3>Classic Men's Watch</h3>
+                    <p>Elegant design with a genuine leather strap. Ideal for formal occasions and daily wear.</p>
+                    <p><strong>$149.99</strong></p>
+                    <button class="btn-primary" onclick="openModal('watch1-details')">View Details</button>
+                    <button class="btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+                </div>
+                <div class="watch" data-category="women" data-name="Women's Elegance Watch" data-price="199.99">
+                    <img src="watch2.jpg" alt="Women's Elegance Watch">
+                    <h3>Women's Elegance Watch</h3>
+                    <p>Beautifully crafted with a gold finish. Perfect for both everyday elegance and special events.</p>
+                    <p><strong>$199.99</strong></p>
+                    <button class="btn-primary" onclick="openModal('watch2-details')">View Details</button>
+                    <button class="btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+                </div>
+                <!-- Add more watch items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>At Online Watch Store, we are dedicated to providing high-quality timepieces that combine style, functionality, and craftsmanship. Our team carefully selects each watch to ensure it meets our high standards and enhances your personal style.</p>
+            <img src="about-us.jpg" alt="About Us">
+        </div>
+    </section>
+
+    <section id="video">
+        <div class="container">
+            <h2>Watch Our Latest Video</h2>
+            <p>Check out our latest video to see our watches in action and learn more about what makes them special.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart">
+        <div class="container">
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items">
+                <p>Your cart is empty.</p>
+            </div>
+            <button class="btn-primary" id="checkout-btn">Checkout</button>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Have questions or need assistance? Feel free to get in touch with us through the following methods:</p>
+            <p>Email: <a href="mailto:support@watchstore.com">support@watchstore.com</a></p>
+            <p>Phone: +1 234 567 890</p>
+            <p>Address: 123 Watch Street, Time City, TC 45678</p>
+        </div>
+    </section>
+
+    <!-- Modal for watch details -->
+    <div id="watch1-details" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('watch1-details')">&times;</span>
+            <h2>Classic Men's Watch</h2>
+            <img src="watch1.jpg" alt="Classic Men's Watch">
+            <p>This classic men's watch features an elegant design with a genuine leather strap. It combines sophistication with functionality, making it the perfect accessory for any formal occasion or daily wear.</p>
+            <p><strong>Price: $149.99</strong></p>
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>High-quality leather strap</li>
+                <li>Quartz movement for accurate timekeeping</li>
+                <li>Water-resistant up to 50 meters</li>
+                <li>Stainless steel case with a scratch-resistant mineral glass</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="watch2-details" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('watch2-details')">&times;</span>
+            <h2>Women's Elegance Watch</h2>
+            <img src="watch2.jpg" alt="Women's Elegance Watch">
+            <p>This women's elegance watch features a beautiful gold finish, making it a perfect accessory for both everyday elegance and special occasions. It combines luxury with practicality.</p>
+            <p><strong>Price: $199.99</strong></p>
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>Gold-plated stainless steel case</li>
+                <li>Quartz movement for reliable performance</li>
+                <li>Water-resistant up to 30 meters</li>
+                <li>Elegant design with a comfortable bracelet</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function addToCart(button) {
+            const watch = button.parentElement;
+            const name = watch.getAttribute('data-name');
+            const price = parseFloat(watch.getAttribute('data-price'));
+            
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                cartCount.textContent = '0';
+                return;
+            }
+            
+            let html = '<ul>';
+            cart.forEach(item => {
+                html += `<li>${item.name} - $${item.price} x ${item.quantity}</li>`;
+            });
+            html += '</ul>';
+            
+            cartItemsContainer.innerHTML = html;
+            cartCount.textContent = cart.length;
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            alert('Checkout functionality not implemented yet.');
+        });
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
